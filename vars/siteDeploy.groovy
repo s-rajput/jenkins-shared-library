@@ -1,6 +1,13 @@
 def call(Map config) {
 
+     echo 'siteDeploy - STARTED'
 
+    echo "${config.application}"
+
+     echo "${config.application.name}"
+    
+     echo 'siteDeploy - Pipe started'
+    
     pipeline {
 
         agent { label "${config.build.image}" }
@@ -27,6 +34,8 @@ def call(Map config) {
                 steps {
                     script {
                     echo 'Deploying...'
+                      deployApplication(config)
+                         echo 'Deploy finish'
                     }
                 }
             }
